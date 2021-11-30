@@ -9,12 +9,12 @@ key_hole_h = 14;
 plate_thickness = 1.2;
 
 // Globals
-kb_height = 5;
+kb_height = 7;
 corner_radius = 1.2;
 edge_thickness = 3;
 margin = 5;
-top_center_fudge = 3;
-bottom_center_fudge = 0;
+top_center_fudge = 6;
+bottom_center_fudge = 3;
 
 // Customization
 num_columns = 6;
@@ -24,6 +24,7 @@ num_rows = 5;
 kb_w = key_spacing_w*num_columns + 2*margin + top_center_fudge;
 kb_wb = key_spacing_w*(num_columns+1) + 2*margin + bottom_center_fudge;
 kb_h = key_spacing_h*num_rows + 2*margin;
+kb_mid_angle = atan2((kb_wb-kb_w+0.4),kb_h);
 
 // Imports
 use <choc_switch.scad>;
@@ -79,7 +80,7 @@ module plate() {
             linear_extrude(kb_height-plate_thickness+1)
                 polygon([
                     [0,0],
-                    [kb_wb-2*edge_thickness, 0],
+                    [kb_wb-2*edge_thickness-0.5, 0],
                     [kb_w-2*edge_thickness, kb_h-2*edge_thickness],
                     [0, kb_h-2*edge_thickness]]);
     }
@@ -105,23 +106,48 @@ module wire_hole() {
     }
 }
 
+module hinge() {
+    segs = 4;
+    one_time_offset = parent_module(2) == "right_hand" ? kb_h/segs/2 : 0;
+    translate([kb_wb+0.2, 0.5, 0])
+        rotate([-90, 0, kb_mid_angle])
+            difference() {
+                cylinder(r=3, h=kb_h);
+                translate([0,0,1]) cylinder(r=1, h=kb_h+2);
+                for(offset = [0 : segs+1]) {
+                    translate([0, 0, kb_h/segs*offset + one_time_offset])
+                        cube([10, 10, kb_h/segs/2+0.1], center=true);
+                }
+            }
+}
+
+module hinge_hole() {
+    translate([kb_wb+0.2, 0.5, 0])
+        rotate([-90, 0, kb_mid_angle])
+            translate([0, 0, -4]) cylinder(r=3, h=kb_h+10);
+}
+
 // Main
 module left_hand() {
-    color("teal", 0.9) {
+    frame_color = parent_module(1) == "right_hand" ? "maroon" : "teal";
+    color(frame_color, 0.9) {
         difference() {
             plate();
+
             key_holes();
             wire_hole();
+            hinge_hole();
         }
         supports(1.5);
+        hinge();
     }
-    color("gray", 0.5) keys(5,6);
+    //color("gray", 0.5) keys(5,6);
 }
 
 module right_hand() {
     translate([kb_wb+0.5, 0, 0])
-        rotate(2*atan2((kb_wb-kb_w+0.5),kb_h), v=[0,0,1])
-            translate([kb_wb, 0, 0])
+        rotate(2*kb_mid_angle, v=[0,0,1])
+            translate([kb_wb+0.1, 0, 0])
                 mirror([1,0,0])
                     left_hand();
 }
@@ -130,7 +156,7 @@ module keyboard() {
     left_hand();
     right_hand();
 
-    //color("cyan", 0.7) translate([kb_w, kb_h/2, 1]) usbc();
+    color("cyan", 0.7) translate([kb_w-4, kb_h/2, 1]) rotate([0, 0, kb_mid_angle/2]) usbc();
 }
 
 keyboard();

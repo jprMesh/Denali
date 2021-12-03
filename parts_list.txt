@@ -1,0 +1,7 @@
+frame
+pcbs
+usb c connector
+metal rod https://www.amazon.com/Round-Brass-Rod-Diameter-Engineering/dp/B01C6LUO5Q
+switches
+hot swap sockets
+keycaps

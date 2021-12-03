@@ -454,7 +454,7 @@ U 1 1 5EB57FA6
 P 5850 1800
 F 0 "MX1" H 5883 2023 60  0000 C CNN
 F 1 "MX-NoLED" H 5883 1949 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 5225 1775 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 5225 1775 60  0001 C CNN
 F 3 "" H 5225 1775 60  0001 C CNN
 	1    5850 1800
 	1    0    0    -1  
@@ -478,7 +478,7 @@ U 1 1 5EB654B7
 P 6400 1800
 F 0 "MX2" H 6433 2023 60  0000 C CNN
 F 1 "MX-NoLED" H 6433 1949 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 5775 1775 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 5775 1775 60  0001 C CNN
 F 3 "" H 5775 1775 60  0001 C CNN
 	1    6400 1800
 	1    0    0    -1  
@@ -502,7 +502,7 @@ U 1 1 5EB674B8
 P 5850 2450
 F 0 "MX7" H 5883 2673 60  0000 C CNN
 F 1 "MX-NoLED" H 5883 2599 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 5225 2425 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 5225 2425 60  0001 C CNN
 F 3 "" H 5225 2425 60  0001 C CNN
 	1    5850 2450
 	1    0    0    -1  
@@ -526,7 +526,7 @@ U 1 1 5EB68E72
 P 6400 2450
 F 0 "MX8" H 6433 2673 60  0000 C CNN
 F 1 "MX-NoLED" H 6433 2599 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 5775 2425 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 5775 2425 60  0001 C CNN
 F 3 "" H 5775 2425 60  0001 C CNN
 	1    6400 2450
 	1    0    0    -1  
@@ -565,7 +565,7 @@ U 1 1 61AAC581
 P 6950 1800
 F 0 "MX3" H 6983 2023 60  0000 C CNN
 F 1 "MX-NoLED" H 6983 1949 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 6325 1775 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 6325 1775 60  0001 C CNN
 F 3 "" H 6325 1775 60  0001 C CNN
 	1    6950 1800
 	1    0    0    -1  
@@ -589,7 +589,7 @@ U 1 1 61AAC58E
 P 7500 1800
 F 0 "MX4" H 7533 2023 60  0000 C CNN
 F 1 "MX-NoLED" H 7533 1949 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 6875 1775 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 6875 1775 60  0001 C CNN
 F 3 "" H 6875 1775 60  0001 C CNN
 	1    7500 1800
 	1    0    0    -1  
@@ -613,7 +613,7 @@ U 1 1 61AAC59B
 P 6950 2450
 F 0 "MX9" H 6983 2673 60  0000 C CNN
 F 1 "MX-NoLED" H 6983 2599 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 6325 2425 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 6325 2425 60  0001 C CNN
 F 3 "" H 6325 2425 60  0001 C CNN
 	1    6950 2450
 	1    0    0    -1  
@@ -637,7 +637,7 @@ U 1 1 61AAC5A8
 P 7500 2450
 F 0 "MX10" H 7533 2673 60  0000 C CNN
 F 1 "MX-NoLED" H 7533 2599 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 6875 2425 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 6875 2425 60  0001 C CNN
 F 3 "" H 6875 2425 60  0001 C CNN
 	1    7500 2450
 	1    0    0    -1  
@@ -661,7 +661,7 @@ U 1 1 61AB0720
 P 8050 1800
 F 0 "MX5" H 8083 2023 60  0000 C CNN
 F 1 "MX-NoLED" H 8083 1949 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 7425 1775 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 7425 1775 60  0001 C CNN
 F 3 "" H 7425 1775 60  0001 C CNN
 	1    8050 1800
 	1    0    0    -1  
@@ -685,7 +685,7 @@ U 1 1 61AB072D
 P 8600 1800
 F 0 "MX6" H 8633 2023 60  0000 C CNN
 F 1 "MX-NoLED" H 8633 1949 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 7975 1775 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 7975 1775 60  0001 C CNN
 F 3 "" H 7975 1775 60  0001 C CNN
 	1    8600 1800
 	1    0    0    -1  
@@ -709,7 +709,7 @@ U 1 1 61AB073A
 P 8050 2450
 F 0 "MX11" H 8083 2673 60  0000 C CNN
 F 1 "MX-NoLED" H 8083 2599 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 7425 2425 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 7425 2425 60  0001 C CNN
 F 3 "" H 7425 2425 60  0001 C CNN
 	1    8050 2450
 	1    0    0    -1  
@@ -733,7 +733,7 @@ U 1 1 61AB0747
 P 8600 2450
 F 0 "MX12" H 8633 2673 60  0000 C CNN
 F 1 "MX-NoLED" H 8633 2599 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 7975 2425 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 7975 2425 60  0001 C CNN
 F 3 "" H 7975 2425 60  0001 C CNN
 	1    8600 2450
 	1    0    0    -1  
@@ -757,7 +757,7 @@ U 1 1 61AC03E2
 P 5850 3100
 F 0 "MX13" H 5883 3323 60  0000 C CNN
 F 1 "MX-NoLED" H 5883 3249 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 5225 3075 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 5225 3075 60  0001 C CNN
 F 3 "" H 5225 3075 60  0001 C CNN
 	1    5850 3100
 	1    0    0    -1  
@@ -781,7 +781,7 @@ U 1 1 61AC03EF
 P 6400 3100
 F 0 "MX14" H 6433 3323 60  0000 C CNN
 F 1 "MX-NoLED" H 6433 3249 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 5775 3075 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 5775 3075 60  0001 C CNN
 F 3 "" H 5775 3075 60  0001 C CNN
 	1    6400 3100
 	1    0    0    -1  
@@ -805,7 +805,7 @@ U 1 1 61AC03FC
 P 5850 3750
 F 0 "MX19" H 5883 3973 60  0000 C CNN
 F 1 "MX-NoLED" H 5883 3899 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 5225 3725 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 5225 3725 60  0001 C CNN
 F 3 "" H 5225 3725 60  0001 C CNN
 	1    5850 3750
 	1    0    0    -1  
@@ -829,7 +829,7 @@ U 1 1 61AC0409
 P 6400 3750
 F 0 "MX20" H 6433 3973 60  0000 C CNN
 F 1 "MX-NoLED" H 6433 3899 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 5775 3725 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 5775 3725 60  0001 C CNN
 F 3 "" H 5775 3725 60  0001 C CNN
 	1    6400 3750
 	1    0    0    -1  
@@ -853,7 +853,7 @@ U 1 1 61AC0418
 P 6950 3100
 F 0 "MX15" H 6983 3323 60  0000 C CNN
 F 1 "MX-NoLED" H 6983 3249 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 6325 3075 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 6325 3075 60  0001 C CNN
 F 3 "" H 6325 3075 60  0001 C CNN
 	1    6950 3100
 	1    0    0    -1  
@@ -877,7 +877,7 @@ U 1 1 61AC0425
 P 7500 3100
 F 0 "MX16" H 7533 3323 60  0000 C CNN
 F 1 "MX-NoLED" H 7533 3249 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 6875 3075 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 6875 3075 60  0001 C CNN
 F 3 "" H 6875 3075 60  0001 C CNN
 	1    7500 3100
 	1    0    0    -1  
@@ -901,7 +901,7 @@ U 1 1 61AC0432
 P 6950 3750
 F 0 "MX21" H 6983 3973 60  0000 C CNN
 F 1 "MX-NoLED" H 6983 3899 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 6325 3725 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 6325 3725 60  0001 C CNN
 F 3 "" H 6325 3725 60  0001 C CNN
 	1    6950 3750
 	1    0    0    -1  
@@ -925,7 +925,7 @@ U 1 1 61AC043F
 P 7500 3750
 F 0 "MX22" H 7533 3973 60  0000 C CNN
 F 1 "MX-NoLED" H 7533 3899 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 6875 3725 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 6875 3725 60  0001 C CNN
 F 3 "" H 6875 3725 60  0001 C CNN
 	1    7500 3750
 	1    0    0    -1  
@@ -949,7 +949,7 @@ U 1 1 61AC044D
 P 8050 3100
 F 0 "MX17" H 8083 3323 60  0000 C CNN
 F 1 "MX-NoLED" H 8083 3249 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 7425 3075 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 7425 3075 60  0001 C CNN
 F 3 "" H 7425 3075 60  0001 C CNN
 	1    8050 3100
 	1    0    0    -1  
@@ -973,7 +973,7 @@ U 1 1 61AC045A
 P 8600 3100
 F 0 "MX18" H 8633 3323 60  0000 C CNN
 F 1 "MX-NoLED" H 8633 3249 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 7975 3075 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 7975 3075 60  0001 C CNN
 F 3 "" H 7975 3075 60  0001 C CNN
 	1    8600 3100
 	1    0    0    -1  
@@ -997,7 +997,7 @@ U 1 1 61AC0467
 P 8050 3750
 F 0 "MX23" H 8083 3973 60  0000 C CNN
 F 1 "MX-NoLED" H 8083 3899 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 7425 3725 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 7425 3725 60  0001 C CNN
 F 3 "" H 7425 3725 60  0001 C CNN
 	1    8050 3750
 	1    0    0    -1  
@@ -1021,7 +1021,7 @@ U 1 1 61AC0474
 P 8600 3750
 F 0 "MX24" H 8633 3973 60  0000 C CNN
 F 1 "MX-NoLED" H 8633 3899 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 7975 3725 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 7975 3725 60  0001 C CNN
 F 3 "" H 7975 3725 60  0001 C CNN
 	1    8600 3750
 	1    0    0    -1  
@@ -1045,7 +1045,7 @@ U 1 1 61AD27C2
 P 5850 4400
 F 0 "MX25" H 5883 4623 60  0000 C CNN
 F 1 "MX-NoLED" H 5883 4549 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 5225 4375 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 5225 4375 60  0001 C CNN
 F 3 "" H 5225 4375 60  0001 C CNN
 	1    5850 4400
 	1    0    0    -1  
@@ -1069,7 +1069,7 @@ U 1 1 61AD27CF
 P 6400 4400
 F 0 "MX26" H 6433 4623 60  0000 C CNN
 F 1 "MX-NoLED" H 6433 4549 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 5775 4375 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 5775 4375 60  0001 C CNN
 F 3 "" H 5775 4375 60  0001 C CNN
 	1    6400 4400
 	1    0    0    -1  
@@ -1093,7 +1093,7 @@ U 1 1 61AD27DD
 P 6950 4400
 F 0 "MX27" H 6983 4623 60  0000 C CNN
 F 1 "MX-NoLED" H 6983 4549 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 6325 4375 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 6325 4375 60  0001 C CNN
 F 3 "" H 6325 4375 60  0001 C CNN
 	1    6950 4400
 	1    0    0    -1  
@@ -1117,7 +1117,7 @@ U 1 1 61AD27EA
 P 7500 4400
 F 0 "MX28" H 7533 4623 60  0000 C CNN
 F 1 "MX-NoLED" H 7533 4549 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 6875 4375 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 6875 4375 60  0001 C CNN
 F 3 "" H 6875 4375 60  0001 C CNN
 	1    7500 4400
 	1    0    0    -1  
@@ -1141,7 +1141,7 @@ U 1 1 61AD27F7
 P 8050 4400
 F 0 "MX29" H 8083 4623 60  0000 C CNN
 F 1 "MX-NoLED" H 8083 4549 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 7425 4375 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 7425 4375 60  0001 C CNN
 F 3 "" H 7425 4375 60  0001 C CNN
 	1    8050 4400
 	1    0    0    -1  
@@ -1165,7 +1165,7 @@ U 1 1 61AD2804
 P 8600 4400
 F 0 "MX30" H 8633 4623 60  0000 C CNN
 F 1 "MX-NoLED" H 8633 4549 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 7975 4375 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 7975 4375 60  0001 C CNN
 F 3 "" H 7975 4375 60  0001 C CNN
 	1    8600 4400
 	1    0    0    -1  
@@ -1191,7 +1191,7 @@ U 1 1 61AD5AF1
 P 9150 4400
 F 0 "MX31" H 9183 4623 60  0000 C CNN
 F 1 "MX-NoLED" H 9183 4549 20  0000 C CNN
-F 2 "choc_hotswap:CherryMX_Choc_Hotswap" H 8525 4375 60  0001 C CNN
+F 2 "keyswitches:Kailh_socket_PG1350_reversible" H 8525 4375 60  0001 C CNN
 F 3 "" H 8525 4375 60  0001 C CNN
 	1    9150 4400
 	1    0    0    -1  

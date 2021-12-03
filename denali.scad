@@ -113,7 +113,7 @@ module hinge() {
         rotate([-90, 0, kb_mid_angle])
             difference() {
                 cylinder(r=3, h=kb_h);
-                translate([0,0,1]) cylinder(r=1, h=kb_h+2);
+                translate([0,0,-1]) cylinder(r=1, h=kb_h+2);
                 for(offset = [0 : segs+1]) {
                     translate([0, 0, kb_h/segs*offset + one_time_offset])
                         cube([10, 10, kb_h/segs/2+0.1], center=true);
@@ -147,6 +147,7 @@ module left_hand() {
 module right_hand() {
     translate([kb_wb+0.5, 0, 0])
         rotate(2*kb_mid_angle, v=[0,0,1])
+        rotate(15, v=[kb_wb-kb_w, kb_h, 0]) // render hinge angle
             translate([kb_wb+0.1, 0, 0])
                 mirror([1,0,0])
                     left_hand();

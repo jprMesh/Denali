@@ -1,7 +1,13 @@
-frame
-pcbs
-usb c connector
-metal rod https://www.amazon.com/Round-Brass-Rod-Diameter-Engineering/dp/B01C6LUO5Q
-switches
-hot swap sockets
-keycaps
+case
+  3d printed frame
+  metal rod https://www.amazon.com/Round-Brass-Rod-Diameter-Engineering/dp/B01C6LUO5Q
+
+pcb
+  pcbs
+  pcb components (diodes, caps, uC, LEDs?)
+  usb c connector
+  hot swap sockets
+
+switches and stuff
+  switches
+  keycaps

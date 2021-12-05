@@ -30,7 +30,7 @@ kb_mid_angle = atan2((kb_wb-kb_w+0.4),kb_h);
 use <choc_switch.scad>;
 use <usbc.scad>;
 
-// Key modules
+//=== Key modules ================================================================ 
 module key_hole(row, col) {
     cube([key_hole_w, key_hole_h, 10]);
 }
@@ -60,7 +60,7 @@ module keys(rows, cols) {
     }
 }
 
-// Plate modules
+//=== Plate modules =============================================================
 module corner(x, y) {
     translate([x, y, 0]) {
         cylinder(r=corner_radius, h=kb_height - corner_radius);
@@ -127,7 +127,20 @@ module hinge_hole() {
             translate([0, 0, -4]) cylinder(r=3, h=kb_h+10);
 }
 
-// Main
+//=== PCB ======================================================================
+module pcb() {
+    translate([edge_thickness+1, edge_thickness+1, kb_height - plate_thickness - 1.6 - 1])
+        linear_extrude(1.6) // 1.6mm thick pcb
+            polygon([
+                [0,0],
+                [kb_wb-2*edge_thickness - 3, 0],
+                [kb_wb-2*edge_thickness - 11, kb_h/2 - 1],
+                [kb_w-2*edge_thickness - top_center_fudge - 4, kb_h/2 - 2],
+                [kb_w-2*edge_thickness - top_center_fudge - 4, kb_h-2*edge_thickness - 2],
+                [0, kb_h-2*edge_thickness - 2]]);
+}
+
+//=== Main =====================================================================
 module left_hand() {
     frame_color = parent_module(1) == "right_hand" ? "maroon" : "teal";
     color(frame_color, 0.9) {
@@ -141,7 +154,7 @@ module left_hand() {
         supports(1.5);
         hinge();
     }
-    //color("gray", 0.5) keys(5,6);
+    color("gray", 0.5) keys(5,6);
 }
 
 module right_hand() {
@@ -156,6 +169,8 @@ module right_hand() {
 module keyboard() {
     left_hand();
     right_hand();
+    
+    color("green", 0.7) pcb();
 
     color("cyan", 0.7) translate([kb_w-4, kb_h/2, 1]) rotate([0, 0, kb_mid_angle/2]) usbc();
 }

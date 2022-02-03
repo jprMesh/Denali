@@ -1,6 +1,7 @@
 case
   3d printed frame
   metal rod https://www.amazon.com/Round-Brass-Rod-Diameter-Engineering/dp/B01C6LUO5Q
+  usb cable? https://www.amazon.com/Andifany-Extension-Degree-Ribbon-Shielding/dp/B08YYG47W8/
 
 pcb
   pcbs

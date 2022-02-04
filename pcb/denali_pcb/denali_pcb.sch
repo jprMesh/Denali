@@ -1389,4 +1389,93 @@ Wire Wire Line
 Connection ~ 6550 3700
 Wire Wire Line
 	6550 3700 6550 4350
+$Comp
+L Connector:AudioJack4 J1
+U 1 1 61FD31E9
+P 4950 6100
+F 0 "J1" H 4907 6425 50  0000 C CNN
+F 1 "AudioJack4" H 4907 6334 50  0000 C CNN
+F 2 "" H 4950 6100 50  0001 C CNN
+F 3 "~" H 4950 6100 50  0001 C CNN
+	1    4950 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0101
+U 1 1 61FD734C
+P 6000 6300
+F 0 "#PWR0101" H 6000 6150 50  0001 C CNN
+F 1 "+5V" H 6015 6473 50  0000 C CNN
+F 2 "" H 6000 6300 50  0001 C CNN
+F 3 "" H 6000 6300 50  0001 C CNN
+	1    6000 6300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R6
+U 1 1 61FE506B
+P 5450 6200
+F 0 "R6" H 5509 6246 50  0000 L CNN
+F 1 "4.7k" H 5509 6155 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 5450 6200 50  0001 C CNN
+F 3 "~" H 5450 6200 50  0001 C CNN
+	1    5450 6200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5150 6300 5650 6300
+$Comp
+L Device:R_Small R5
+U 1 1 61FFAC7C
+P 5450 6100
+F 0 "R5" H 5509 6146 50  0000 L CNN
+F 1 "4.7k" H 5509 6055 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 5450 6100 50  0001 C CNN
+F 3 "~" H 5450 6100 50  0001 C CNN
+	1    5450 6100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5150 6100 5200 6100
+Wire Wire Line
+	5350 6200 5300 6200
+Wire Wire Line
+	5550 6100 5650 6100
+Wire Wire Line
+	5650 6100 5650 6200
+Connection ~ 5650 6300
+Wire Wire Line
+	5650 6300 6000 6300
+Wire Wire Line
+	5550 6200 5650 6200
+Connection ~ 5650 6200
+Wire Wire Line
+	5650 6200 5650 6300
+$Comp
+L power:GND #PWR0102
+U 1 1 62013970
+P 5800 6000
+F 0 "#PWR0102" H 5800 5750 50  0001 C CNN
+F 1 "GND" H 5805 5827 50  0000 C CNN
+F 2 "" H 5800 6000 50  0001 C CNN
+F 3 "" H 5800 6000 50  0001 C CNN
+	1    5800 6000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5800 6000 5150 6000
+Text GLabel 5200 5850 1    50   Input ~ 0
+SDA
+Text GLabel 5300 5850 1    50   Input ~ 0
+SCL
+Wire Wire Line
+	5300 5850 5300 6200
+Connection ~ 5300 6200
+Wire Wire Line
+	5300 6200 5150 6200
+Wire Wire Line
+	5200 6100 5200 5850
+Connection ~ 5200 6100
+Wire Wire Line
+	5200 6100 5350 6100
 $EndSCHEMATC

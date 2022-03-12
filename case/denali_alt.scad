@@ -13,16 +13,17 @@ kb_height = 7;
 corner_radius = 1.2;
 edge_thickness = 3;
 margin = 5;
-top_center_fudge = 6;
-bottom_center_fudge = 3;
+top_center_fudge = 5;
+bottom_center_fudge = 2;
+outer_fudge = 14;
 
 // Customization
 num_columns = 6;
 num_rows = 5;
 
 // Helpful shortcuts
-kb_w = key_spacing_w*num_columns + 2*margin + top_center_fudge;
-kb_wb = key_spacing_w*(num_columns+1) + 2*margin + bottom_center_fudge;
+kb_w = outer_fudge + key_spacing_w*num_columns + 2*margin + top_center_fudge;
+kb_wb = outer_fudge + key_spacing_w*(num_columns+1) + 2*margin + bottom_center_fudge;
 kb_h = key_spacing_h*num_rows + 2*margin;
 kb_mid_angle = atan2((kb_wb-kb_w+0.4),kb_h);
 
@@ -46,14 +47,14 @@ module key_grid(rows, cols) {
 }
 
 module key_holes() {
-    x_offset = margin + (key_spacing_w - key_hole_w) / 2;
+    x_offset = margin + (key_spacing_w - key_hole_w) / 2 + outer_fudge;
     y_offset = margin + (key_spacing_h - key_hole_h) / 2;
     translate([x_offset, y_offset, 0])
         key_grid(rows=num_rows, cols=num_columns) key_hole();
 }
 
 module keys(rows, cols) {
-    x_offset = margin + (key_spacing_w - key_hole_w) / 2 + key_hole_w/2;
+    x_offset = margin + (key_spacing_w - key_hole_w) / 2 + key_hole_w/2 + outer_fudge;
     y_offset = margin + (key_spacing_h - key_hole_h) / 2 + key_hole_h/2;
     translate([x_offset, y_offset, kb_height]) {
         key_grid(rows=num_rows, cols=num_columns) choc();
@@ -87,21 +88,23 @@ module plate() {
 }
 
 module supports(r) {
-    translate([margin+key_spacing_w, margin+key_spacing_h, 0])
+    translate([outer_fudge+margin+key_spacing_w, margin+key_spacing_h, 0])
         cylinder(r=r, h=kb_height - 0.5);
-    translate([margin+5*key_spacing_w, margin+key_spacing_h, 0])
+    translate([outer_fudge+margin+5*key_spacing_w, margin+key_spacing_h, 0])
         cylinder(r=r, h=kb_height - 0.5);
-    translate([margin+key_spacing_w, margin+(num_rows-1)*key_spacing_h, 0])
+    translate([outer_fudge+margin+key_spacing_w, margin+(num_rows-1)*key_spacing_h, 0])
         cylinder(r=r, h=kb_height - 0.5);
-    translate([margin+5*key_spacing_w, margin+(num_rows-1)*key_spacing_h, 0])
+    translate([outer_fudge+margin+5*key_spacing_w, margin+(num_rows-1)*key_spacing_h, 0])
         cylinder(r=r, h=kb_height - 0.5);
 }
 
 module wire_hole() {
-    translate([kb_w-6, kb_h, kb_height-4]) {
+    translate([6, kb_h, kb_height-4]) {
         hull() {
             translate([0,0,-kb_height]) cube([4,10,2], center=true);
             rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
+            translate([13,0,-kb_height]) cube([4,10,2], center=true);
+            translate([13,0,0]) rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
         };
     }
 }
@@ -133,11 +136,12 @@ module pcb() {
         linear_extrude(1.6) // 1.6mm thick pcb
             polygon([
                 [0,0],
-                [kb_wb-2*edge_thickness - 3, 0],
-                [kb_wb-2*edge_thickness - 11, kb_h/2 - 1],
-                [kb_w-2*edge_thickness - top_center_fudge - 4, kb_h/2 - 2],
-                [kb_w-2*edge_thickness - top_center_fudge - 4, kb_h-2*edge_thickness - 2],
+                [kb_wb-2*edge_thickness - 7, 0],
+                [kb_wb-2*edge_thickness - 7, 17],
+                [kb_w-2*edge_thickness - 3, kb_h-2*edge_thickness - 2],
                 [0, kb_h-2*edge_thickness - 2]]);
+    echo(kb_wb-2*edge_thickness - 7);
+    echo(kb_h-2*edge_thickness - 2);
 }
 
 //=== Main =====================================================================
@@ -172,7 +176,7 @@ module keyboard() {
     
     color("green", 0.7) pcb();
 
-    color("cyan", 0.7) translate([kb_w-4, kb_h/2, 1]) rotate([0, 0, kb_mid_angle/2]) usbc();
+    //color("cyan", 0.7) translate([kb_w-4, kb_h/2, 1]) rotate([0, 0, kb_mid_angle/2]) usbc();
 }
 
 keyboard();

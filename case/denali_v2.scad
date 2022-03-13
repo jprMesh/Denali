@@ -15,11 +15,13 @@ edge_thickness = 3;
 margin = 5;
 top_center_fudge = 10;
 bottom_center_fudge = 7;
-outer_fudge = 6;
+outer_fudge = 0;
+hinge_segs = 4;
 
 // Customization
 num_columns = 6;
 num_rows = 5;
+ledge_mount = true;
 
 // Helpful shortcuts
 kb_w = outer_fudge + key_spacing_w*num_columns + 2*margin + top_center_fudge;
@@ -34,6 +36,7 @@ use <usbc.scad>;
 //=== Key modules ================================================================ 
 module key_hole(row, col) {
     cube([key_hole_w, key_hole_h, 10]);
+    translate([-1, 0, -5+plate_thickness]) cube([key_hole_w+2, key_hole_h, 10]);
 }
 
 module key_grid(rows, cols) {
@@ -73,6 +76,7 @@ module corner(x, y) {
 }
 
 module plate() {
+    plate_thick = ledge_mount ? plate_thickness + 0.8 : plate_thickness;
     difference() {
         hull() {
             corner(corner_radius, corner_radius);
@@ -81,7 +85,7 @@ module plate() {
             corner(corner_radius, kb_h - corner_radius);
         }
         translate([edge_thickness, edge_thickness, -1])
-            linear_extrude(kb_height-plate_thickness+1)
+            linear_extrude(kb_height-plate_thick+1)
                 polygon([
                     [0,0],
                     [kb_wb-2*edge_thickness-0.5, 0],
@@ -124,24 +128,65 @@ module trrs_hole() {
 }
 
 module hinge() {
-    segs = 4;
-    one_time_offset = parent_module(2) == "right_hand" ? kb_h/segs/2 : 0;
+    one_time_offset = parent_module(2) == "right_hand" ? kb_h/hinge_segs/2 : 0;
     translate([kb_wb+0.2, 0.5, 0])
         rotate([-90, 0, kb_mid_angle])
             difference() {
-                cylinder(r=3, h=kb_h+0.7);
-                translate([0,0,-2]) cylinder(r=1, h=kb_h+4);
-                for(offset = [0 : segs+1]) {
-                    translate([0, 0, kb_h/segs*offset + one_time_offset])
-                        cube([10, 10, kb_h/segs/2+0.1], center=true);
+                translate([0, 0, -1])
+                cylinder(r=3, h=kb_h+3);
+                
+                translate([0,0,-2]) cylinder(r=1, h=kb_h+5);
+                for(offset = [0 : hinge_segs+1]) {
+                    translate([0, 0, kb_h/hinge_segs*offset + one_time_offset])
+                        cube([10, 10, kb_h/hinge_segs/2+0.1], center=true);
                 }
+                translate([0, 0, kb_h/hinge_segs*2])
+                    cube([10, 10, kb_h/hinge_segs/2+0.1], center=true);
             }
 }
 
 module hinge_hole() {
+    one_time_offset = parent_module(2) == "right_hand" ? kb_h/hinge_segs/2 : 0;
     translate([kb_wb+0.2, 0.5, 0])
+        rotate([-90, 0, kb_mid_angle]) {
+                translate([0,0,-5]) cylinder(r=2, h=kb_h+10);
+                for(offset = [0 : hinge_segs+1]) {
+                    translate([0, 0, kb_h/hinge_segs*offset + one_time_offset])
+                    cylinder(r=3.1, h=kb_h/hinge_segs/2+0.1, center=true);
+                }
+            }    
+}
+
+module hinge_crop() {
+    difference() {
+        union() {
+            translate([0, kb_h-5, -kb_height]) cube([kb_wb+30, 10, kb_height*2]);
+            translate([0, -5, -kb_height]) cube([kb_wb+30, 10, kb_height*2]);
+        }
+        hull() {
+            translate([corner_radius, corner_radius, 0])
+                cylinder(r=corner_radius, h=kb_height*4, center=true);
+            translate([kb_wb - corner_radius, corner_radius, 0])
+                cylinder(r=corner_radius, h=kb_height*4, center=true);
+            translate([kb_wb - corner_radius+2.3, corner_radius+2.4*tan(kb_mid_angle), 0])
+                cylinder(r=corner_radius, h=kb_height*4, center=true);
+            translate([kb_wb - corner_radius+2.3+10, corner_radius+(2.3+10)*tan(2*kb_mid_angle), 0])
+                cylinder(r=corner_radius, h=kb_height*4, center=true);
+            translate([kb_wb - corner_radius+10, kb_h - corner_radius, 0])
+                cylinder(r=corner_radius, h=kb_height*4, center=true);
+            translate([kb_w - corner_radius, kb_h - corner_radius, 0])
+                cylinder(r=corner_radius, h=kb_height*4, center=true);
+            translate([corner_radius, kb_h - corner_radius, 0])
+                cylinder(r=corner_radius, h=kb_height*4, center=true);
+        }
+    }
+}
+
+module ribbon_hole() {
+    translate([kb_wb+0.2, 0.5, -1.9])
         rotate([-90, 0, kb_mid_angle])
-            translate([-0.1, 0, -4]) cylinder(r=3, h=kb_h+10);
+        translate([0, 0, kb_h/hinge_segs*2])
+            cube([10, 10, kb_h/hinge_segs/2+0.1], center=true);
 }
 
 //=== PCB ======================================================================
@@ -167,16 +212,21 @@ module left_hand() {
 
             key_holes();
             usb_hole();
-            trrs_hole();
+            //trrs_hole();
             hinge_hole();
+            ribbon_hole();
         }
         supports(1.5);
-        hinge();
+        difference() {
+            hinge();
+            hinge_crop();
+        }
     }
     color("gray", 0.5) keys(5,6);
 }
 
 module right_hand() {
+    //translate([4, 0, 0])
     translate([kb_wb+0.5, 0, 0])
         rotate(2*kb_mid_angle, v=[0,0,1])
         rotate(15, v=[kb_wb-kb_w, kb_h, 0]) // render hinge angle

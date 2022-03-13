@@ -13,9 +13,9 @@ kb_height = 7;
 corner_radius = 1.2;
 edge_thickness = 3;
 margin = 5;
-top_center_fudge = 5;
-bottom_center_fudge = 2;
-outer_fudge = 14;
+top_center_fudge = 10;
+bottom_center_fudge = 7;
+outer_fudge = 6;
 
 // Customization
 num_columns = 6;
@@ -65,7 +65,10 @@ module keys(rows, cols) {
 module corner(x, y) {
     translate([x, y, 0]) {
         cylinder(r=corner_radius, h=kb_height - corner_radius);
-        translate([0, 0, kb_height - corner_radius]) sphere(corner_radius);
+        // Fillet Edge
+        //translate([0, 0, kb_height - corner_radius]) sphere(corner_radius);
+        // Bevel Edge
+        translate([0, 0, kb_height - corner_radius]) cylinder(r=0.01, h=corner_radius);
     }
 }
 
@@ -98,15 +101,26 @@ module supports(r) {
         cylinder(r=r, h=kb_height - 0.5);
 }
 
-module wire_hole() {
-    translate([6, kb_h, kb_height-4]) {
+module usb_hole() {
+    translate([kb_w - 14, kb_h, kb_height-5]) {
         hull() {
-            translate([0,0,-kb_height]) cube([4,10,2], center=true);
             rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
-            translate([13,0,-kb_height]) cube([4,10,2], center=true);
-            translate([13,0,0]) rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
+            translate([8,0,0]) rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
+            translate([1,0,-kb_height]) cube([6,10,2], center=true);
+            translate([8,0,-kb_height]) cube([4,10,2], center=true);
         };
-    }
+    };
+}
+
+module trrs_hole() {
+    translate([6, kb_h, kb_height-5]) {
+        hull() {
+            rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
+            translate([4,0,0]) rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
+            translate([1,0,-kb_height]) cube([6,10,2], center=true);
+            translate([4,0,-kb_height]) cube([4,10,2], center=true);
+        };
+    };
 }
 
 module hinge() {
@@ -115,8 +129,8 @@ module hinge() {
     translate([kb_wb+0.2, 0.5, 0])
         rotate([-90, 0, kb_mid_angle])
             difference() {
-                cylinder(r=3, h=kb_h);
-                translate([0,0,-1]) cylinder(r=1, h=kb_h+2);
+                cylinder(r=3, h=kb_h+0.7);
+                translate([0,0,-2]) cylinder(r=1, h=kb_h+4);
                 for(offset = [0 : segs+1]) {
                     translate([0, 0, kb_h/segs*offset + one_time_offset])
                         cube([10, 10, kb_h/segs/2+0.1], center=true);
@@ -127,7 +141,7 @@ module hinge() {
 module hinge_hole() {
     translate([kb_wb+0.2, 0.5, 0])
         rotate([-90, 0, kb_mid_angle])
-            translate([0, 0, -4]) cylinder(r=3, h=kb_h+10);
+            translate([-0.1, 0, -4]) cylinder(r=3, h=kb_h+10);
 }
 
 //=== PCB ======================================================================
@@ -152,7 +166,8 @@ module left_hand() {
             plate();
 
             key_holes();
-            wire_hole();
+            usb_hole();
+            trrs_hole();
             hinge_hole();
         }
         supports(1.5);

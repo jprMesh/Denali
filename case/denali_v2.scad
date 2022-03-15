@@ -135,7 +135,7 @@ module hinge() {
                 translate([0, 0, -1])
                 cylinder(r=3, h=kb_h+3);
                 
-                translate([0,0,-2]) cylinder(r=1, h=kb_h+5);
+                translate([0,0,1.5]) cylinder(r=0.9, h=kb_h+5);
                 for(offset = [0 : hinge_segs+1]) {
                     translate([0, 0, kb_h/hinge_segs*offset + one_time_offset])
                         cube([10, 10, kb_h/hinge_segs/2+0.1], center=true);
@@ -145,7 +145,7 @@ module hinge() {
             }
 }
 
-module hinge_hole() {
+module hinge_negative_space() {
     one_time_offset = parent_module(2) == "right_hand" ? kb_h/hinge_segs/2 : 0;
     translate([kb_wb+0.2, 0.5, 0])
         rotate([-90, 0, kb_mid_angle]) {
@@ -213,7 +213,7 @@ module left_hand() {
             key_holes();
             usb_hole();
             //trrs_hole();
-            hinge_hole();
+            hinge_negative_space();
             ribbon_hole();
         }
         supports(1.5);
@@ -222,7 +222,7 @@ module left_hand() {
             hinge_crop();
         }
     }
-    //color("gray", 0.5) keys(5,6);
+    color("gray", 0.5) keys(5,6);
 }
 
 module right_hand() {

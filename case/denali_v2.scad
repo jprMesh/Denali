@@ -36,7 +36,7 @@ use <usbc.scad>;
 //=== Key modules ================================================================ 
 module key_hole(row, col) {
     cube([key_hole_w, key_hole_h, 10]);
-    translate([-1, 0, -5+plate_thickness]) cube([key_hole_w+2, key_hole_h, 10]);
+    translate([-1, 0, -10+kb_height-plate_thickness]) cube([key_hole_w+2, key_hole_h, 10]);
 }
 
 module key_grid(rows, cols) {
@@ -76,7 +76,7 @@ module corner(x, y) {
 }
 
 module plate() {
-    plate_thick = ledge_mount ? plate_thickness + 0.8 : plate_thickness;
+    plate_thick = ledge_mount ? plate_thickness + 1.1 : plate_thickness;
     difference() {
         hull() {
             corner(corner_radius, corner_radius);
@@ -222,7 +222,7 @@ module left_hand() {
             hinge_crop();
         }
     }
-    color("gray", 0.5) keys(5,6);
+    //color("gray", 0.5) keys(5,6);
 }
 
 module right_hand() {

@@ -13,8 +13,8 @@ kb_height = 7;
 corner_radius = 1.2;
 edge_thickness = 3;
 margin = 5;
-top_center_fudge = 10;
-bottom_center_fudge = 7;
+top_center_fudge = 16;
+bottom_center_fudge = 13;
 outer_fudge = 0;
 hinge_segs = 4;
 
@@ -106,12 +106,12 @@ module supports(r) {
 }
 
 module usb_hole() {
-    translate([kb_w - 14, kb_h, kb_height-5]) {
+    translate([kb_w - 18, kb_h, kb_height-4.7]) {
         hull() {
             rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
-            translate([8,0,0]) rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
+            translate([10,0,0]) rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
             translate([1,0,-kb_height]) cube([6,10,2], center=true);
-            translate([8,0,-kb_height]) cube([4,10,2], center=true);
+            translate([10,0,-kb_height]) cube([4,10,2], center=true);
         };
     };
 }
@@ -189,6 +189,20 @@ module ribbon_hole() {
             cube([10, 10, kb_h/hinge_segs/2+0.1], center=true);
 }
 
+module magnet_bulge() {
+    translate([2.5, 2.5, 0])
+        cylinder(r=2.5, h=kb_height - 2*corner_radius);
+    translate([2.5, kb_h - 2.5, 0])
+        cylinder(r=2.5, h=kb_height - 2*corner_radius);
+}
+
+module magnet_hole() {
+    translate([2.5, 2.5, -1])
+        cylinder(r=1.55, h=4.2);
+    translate([2.5, kb_h - 2.5, -1])
+        cylinder(r=1.55, h=4.2);
+}
+
 //=== PCB ======================================================================
 module pcb() {
     translate([edge_thickness+1, edge_thickness+1, kb_height - plate_thickness - 1.6 - 1])
@@ -215,14 +229,19 @@ module left_hand() {
             //trrs_hole();
             hinge_negative_space();
             ribbon_hole();
+            magnet_hole();
         }
         supports(1.5);
         difference() {
             hinge();
             hinge_crop();
         }
+        difference() {
+            magnet_bulge();
+            magnet_hole();
+        }
     }
-    color("gray", 0.5) keys(5,6);
+    //color("gray", 0.5) keys(5,6);
 }
 
 module right_hand() {
@@ -239,7 +258,7 @@ module keyboard() {
     left_hand();
     right_hand();
     
-    color("green", 0.7) pcb();
+    //color("green", 0.7) pcb();
 
     //color("cyan", 0.7) translate([kb_w-4, kb_h/2, 1]) rotate([0, 0, kb_mid_angle/2]) usbc();
 }

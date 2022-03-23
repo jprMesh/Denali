@@ -4,17 +4,17 @@ $fs = 0.1;
 // Constants
 key_spacing_w = 18;
 key_spacing_h = 17;
-key_hole_w = 14;
-key_hole_h = 14;
-plate_thickness = 1.2;
+key_hole_w = 13.9;
+key_hole_h = 13.9;
+plate_thickness = 1.25;
 
 // Globals
 kb_height = 7;
 corner_radius = 1.2;
 edge_thickness = 3;
 margin = 5;
-top_center_fudge = 16;
-bottom_center_fudge = 13;
+top_center_fudge = 14;
+bottom_center_fudge = 11;
 outer_fudge = 0;
 hinge_segs = 4;
 
@@ -106,12 +106,12 @@ module supports(r) {
 }
 
 module usb_hole() {
-    translate([kb_w - 18, kb_h, kb_height-4.7]) {
+    translate([kb_w - 16, kb_h, kb_height-4.7]) {
         hull() {
             rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
-            translate([10,0,0]) rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
+            translate([9,0,0]) rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
             translate([1,0,-kb_height]) cube([6,10,2], center=true);
-            translate([10,0,-kb_height]) cube([4,10,2], center=true);
+            translate([9,0,-kb_height]) cube([4,10,2], center=true);
         };
     };
 }
@@ -190,17 +190,17 @@ module ribbon_hole() {
 }
 
 module magnet_bulge() {
-    translate([2.5, 2.5, 0])
-        cylinder(r=2.5, h=kb_height - 2*corner_radius);
-    translate([2.5, kb_h - 2.5, 0])
-        cylinder(r=2.5, h=kb_height - 2*corner_radius);
+    translate([3, 3, 0])
+        cylinder(r=3, h=kb_height - 2*corner_radius);
+    translate([3, kb_h - 3, 0])
+        cylinder(r=3, h=kb_height - 2*corner_radius);
 }
 
 module magnet_hole() {
-    translate([2.5, 2.5, -1])
-        cylinder(r=1.55, h=4.2);
-    translate([2.5, kb_h - 2.5, -1])
-        cylinder(r=1.55, h=4.2);
+    translate([3, 3, -1])
+        cylinder(r=1.65, h=4.2);
+    translate([3, kb_h - 3, -1])
+        cylinder(r=1.65, h=4.2);
 }
 
 //=== PCB ======================================================================

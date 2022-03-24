@@ -67,11 +67,11 @@ module keys(rows, cols) {
 //=== Plate modules =============================================================
 module corner(x, y) {
     translate([x, y, 0]) {
-        cylinder(r=corner_radius, h=kb_height - corner_radius);
+        cylinder(r=corner_radius, $fn=360, h=kb_height - corner_radius);
         // Fillet Edge
         //translate([0, 0, kb_height - corner_radius]) sphere(corner_radius);
         // Bevel Edge
-        translate([0, 0, kb_height - corner_radius]) cylinder(r=0.01, h=corner_radius);
+        translate([0, 0, kb_height - corner_radius]) cylinder(r=0.1, $fn=80, h=corner_radius);
     }
 }
 
@@ -94,15 +94,36 @@ module plate() {
     }
 }
 
+module support(r) {
+    difference() {
+        cylinder(r=r, h=kb_height - 1.5);
+        cylinder(r=0.8, h=2*kb_height, center=true);
+    }
+}
+
 module supports(r) {
-    translate([outer_fudge+margin+key_spacing_w, margin+key_spacing_h, 0])
-        cylinder(r=r, h=kb_height - 0.5);
-    translate([outer_fudge+margin+5*key_spacing_w, margin+key_spacing_h, 0])
-        cylinder(r=r, h=kb_height - 0.5);
-    translate([outer_fudge+margin+key_spacing_w, margin+(num_rows-1)*key_spacing_h, 0])
-        cylinder(r=r, h=kb_height - 0.5);
-    translate([outer_fudge+margin+5*key_spacing_w, margin+(num_rows-1)*key_spacing_h, 0])
-        cylinder(r=r, h=kb_height - 0.5);
+    translate([outer_fudge+margin+key_spacing_w, margin+key_spacing_h, 1])
+        support(r);
+    translate([outer_fudge+margin+5*key_spacing_w, margin+key_spacing_h, 1])
+        support(r);
+    translate([outer_fudge+margin+key_spacing_w, margin+(num_rows-1)*key_spacing_h, 1])
+        support(r);
+    translate([outer_fudge+margin+5*key_spacing_w, margin+(num_rows-1)*key_spacing_h, 1])
+        support(r);
+}
+
+// For RP2040 Zero
+module mcu_backstop() {
+    bs_l = 16;
+    bs_w = 3;
+    translate([kb_w - bs_l - 3.2,
+               kb_h - bs_w - edge_thickness - 24,
+               kb_height - bs_w - 2]) {
+        intersection() {
+            cube([bs_l, bs_w, bs_w]);
+            translate([0, bs_w, bs_w]) rotate([0, 90, 0]) cylinder(r=bs_w, h=bs_l);
+        }
+    }
 }
 
 module usb_hole() {
@@ -198,9 +219,9 @@ module magnet_bulge() {
 
 module magnet_hole() {
     translate([3, 3, -1])
-        cylinder(r=1.65, h=4.2);
+        cylinder(r=1.75, h=2.5+1);
     translate([3, kb_h - 3, -1])
-        cylinder(r=1.65, h=4.2);
+        cylinder(r=1.75, h=2.5+1);
 }
 
 //=== PCB ======================================================================
@@ -217,6 +238,52 @@ module pcb() {
     echo(kb_h-2*edge_thickness - 2);
 }
 
+//=== Back Plate ===============================================================
+module backplate() {
+    bp_edge = edge_thickness + 0.15;
+    difference() {
+        translate([bp_edge, bp_edge, ])
+            linear_extrude(1) polygon([
+                [0,0],
+                [kb_wb-2*bp_edge-0.5, 0],
+                [kb_w-2*bp_edge, kb_h-2*bp_edge],
+                [0, kb_h-2*bp_edge]]);
+        backplate_usb_hole();
+        backplate_magnet_bulge();
+        backplate_supports();
+    }
+}
+
+module backplate_usb_hole() {
+    translate([kb_w - 16, kb_h-10, kb_height-4.7]) {
+        rotate([90,0,0])
+        hull() {
+            rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
+            translate([9,0,0]) rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
+            translate([1,0,-kb_height]) cube([6,10,2], center=true);
+            translate([9,0,-kb_height]) cube([4,10,2], center=true);
+        };
+    };
+}
+
+module backplate_magnet_bulge() {
+    translate([3, 3, -1])
+        cylinder(r=3.1, h=kb_height - 2*corner_radius);
+    translate([3, kb_h - 3, -1])
+        cylinder(r=3.1, h=kb_height - 2*corner_radius);
+}
+
+module backplate_supports() {
+    translate([outer_fudge+margin+key_spacing_w, margin+key_spacing_h, -1])
+        cylinder(r=0.8, h=kb_height);
+    translate([outer_fudge+margin+5*key_spacing_w, margin+key_spacing_h, -1])
+        cylinder(r=0.8, h=kb_height);
+    translate([outer_fudge+margin+key_spacing_w, margin+(num_rows-1)*key_spacing_h, -1])
+        cylinder(r=0.8, h=kb_height);
+    translate([outer_fudge+margin+5*key_spacing_w, margin+(num_rows-1)*key_spacing_h, -1])
+        cylinder(r=0.8, h=kb_height);
+}
+
 //=== Main =====================================================================
 module left_hand() {
     frame_color = parent_module(1) == "right_hand" ? "maroon" : "teal";
@@ -231,7 +298,8 @@ module left_hand() {
             ribbon_hole();
             magnet_hole();
         }
-        supports(1.5);
+        supports(2);
+        mcu_backstop();
         difference() {
             hinge();
             hinge_crop();
@@ -242,6 +310,7 @@ module left_hand() {
         }
     }
     //color("gray", 0.5) keys(5,6);
+    color("gray", 0.5) backplate();
 }
 
 module right_hand() {

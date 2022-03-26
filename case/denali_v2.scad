@@ -320,8 +320,8 @@ module left_hand() {
             magnet_hole();
         }
     }
-    //color("gray", 0.5) keys(5,6);
-    //color("gray", 0.8) backplate();
+    color("gray", 0.5) keys(5,6);
+    color("gray", 0.8) backplate();
 }
 
 module right_hand() {
@@ -336,8 +336,9 @@ module right_hand() {
 
 module keyboard() {
     left_hand();
+    //mirror([1,0,0])
     //color("gray", 0.8) backplate();
-    //right_hand();
+    right_hand();
     
     //color("green", 0.7) pcb();
 

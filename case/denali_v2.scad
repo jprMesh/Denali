@@ -95,20 +95,18 @@ module plate() {
 }
 
 module support(r) {
-    difference() {
-        cylinder(r=r, h=kb_height - 1.5);
-        cylinder(r=0.8, h=2*kb_height, center=true);
-    }
+        cylinder(r=r, h=kb_height - 2.5);
+        translate([0,0,-2]) cylinder(r=1, h=kb_height - 2.5);
 }
 
 module supports(r) {
-    translate([outer_fudge+margin+key_spacing_w, margin+key_spacing_h, 1])
+    translate([outer_fudge+margin+key_spacing_w, margin+key_spacing_h, 2])
         support(r);
-    translate([outer_fudge+margin+5*key_spacing_w, margin+key_spacing_h, 1])
+    translate([outer_fudge+margin+5*key_spacing_w, margin+key_spacing_h, 2])
         support(r);
-    translate([outer_fudge+margin+key_spacing_w, margin+(num_rows-1)*key_spacing_h, 1])
+    translate([outer_fudge+margin+key_spacing_w, margin+(num_rows-1)*key_spacing_h, 2])
         support(r);
-    translate([outer_fudge+margin+5*key_spacing_w, margin+(num_rows-1)*key_spacing_h, 1])
+    translate([outer_fudge+margin+5*key_spacing_w, margin+(num_rows-1)*key_spacing_h, 2])
         support(r);
 }
 
@@ -242,12 +240,14 @@ module pcb() {
 module backplate() {
     bp_edge = edge_thickness + 0.15;
     difference() {
-        translate([bp_edge, bp_edge, ])
-            linear_extrude(1) polygon([
+        union() {
+            translate([bp_edge, bp_edge, ]) linear_extrude(1) polygon([
                 [0,0],
                 [kb_wb-2*bp_edge-0.5, 0],
                 [kb_w-2*bp_edge, kb_h-2*bp_edge],
                 [0, kb_h-2*bp_edge]]);
+            backplate_fit_pegs();
+        }
         backplate_usb_hole();
         backplate_magnet_bulge();
         backplate_supports();
@@ -275,19 +275,30 @@ module backplate_magnet_bulge() {
 
 module backplate_supports() {
     translate([outer_fudge+margin+key_spacing_w, margin+key_spacing_h, -1])
-        cylinder(r=0.8, h=kb_height);
+        cylinder(r=1.1, h=kb_height);
     translate([outer_fudge+margin+5*key_spacing_w, margin+key_spacing_h, -1])
-        cylinder(r=0.8, h=kb_height);
+        cylinder(r=1.1, h=kb_height);
     translate([outer_fudge+margin+key_spacing_w, margin+(num_rows-1)*key_spacing_h, -1])
-        cylinder(r=0.8, h=kb_height);
+        cylinder(r=1.1, h=kb_height);
     translate([outer_fudge+margin+5*key_spacing_w, margin+(num_rows-1)*key_spacing_h, -1])
-        cylinder(r=0.8, h=kb_height);
+        cylinder(r=1.1, h=kb_height);
+}
+
+module backplate_fit_pegs() {
+    translate([outer_fudge+margin+key_spacing_w, margin+key_spacing_h, 0])
+        cylinder(r=2, h=1.9);
+    translate([outer_fudge+margin+5*key_spacing_w, margin+key_spacing_h, 0])
+        cylinder(r=2, h=1.9);
+    translate([outer_fudge+margin+key_spacing_w, margin+(num_rows-1)*key_spacing_h, 0])
+        cylinder(r=2, h=1.9);
+    translate([outer_fudge+margin+5*key_spacing_w, margin+(num_rows-1)*key_spacing_h, 0])
+        cylinder(r=2, h=1.9);
 }
 
 //=== Main =====================================================================
 module left_hand() {
     frame_color = parent_module(1) == "right_hand" ? "maroon" : "teal";
-    color(frame_color, 0.9) {
+    color(frame_color, 0.9) union() {
         difference() {
             plate();
 
@@ -310,7 +321,7 @@ module left_hand() {
         }
     }
     //color("gray", 0.5) keys(5,6);
-    color("gray", 0.5) backplate();
+    //color("gray", 0.8) backplate();
 }
 
 module right_hand() {
@@ -325,7 +336,8 @@ module right_hand() {
 
 module keyboard() {
     left_hand();
-    right_hand();
+    //color("gray", 0.8) backplate();
+    //right_hand();
     
     //color("green", 0.7) pcb();
 

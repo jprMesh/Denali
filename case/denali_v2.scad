@@ -321,7 +321,7 @@ module left_hand() {
         }
     }
     //color("gray", 0.5) keys(5,6);
-    color("gray", 0.8) backplate();
+    //color("gray", 0.8) backplate();
 }
 
 module right_hand() {

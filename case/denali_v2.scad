@@ -154,10 +154,10 @@ module hinge() {
                 translate([0, 0, -1])
                 cylinder(r=3, h=kb_h+3);
                 
-                translate([0,0,1.5]) cylinder(r=0.9, h=kb_h+5);
+                translate([0,0,1.5]) cylinder(r=0.93, h=kb_h+5);
                 for(offset = [0 : hinge_segs+1]) {
                     translate([0, 0, kb_h/hinge_segs*offset + one_time_offset])
-                        cube([10, 10, kb_h/hinge_segs/2+0.1], center=true);
+                        cube([10, 10, kb_h/hinge_segs/2+0.15], center=true);
                 }
                 translate([0, 0, kb_h/hinge_segs*2])
                     cube([10, 10, kb_h/hinge_segs/2+0.1], center=true);
@@ -217,9 +217,9 @@ module magnet_bulge() {
 
 module magnet_hole() {
     translate([3, 3, -1])
-        cylinder(r=1.75, h=2.5+1);
+        cylinder(r=1.65, h=2.1+1);
     translate([3, kb_h - 3, -1])
-        cylinder(r=1.75, h=2.5+1);
+        cylinder(r=1.65, h=2.1+1);
 }
 
 //=== PCB ======================================================================
@@ -320,7 +320,7 @@ module left_hand() {
             magnet_hole();
         }
     }
-    color("gray", 0.5) keys(5,6);
+    //color("gray", 0.5) keys(5,6);
     color("gray", 0.8) backplate();
 }
 

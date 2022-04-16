@@ -249,6 +249,7 @@ module backplate() {
             backplate_fit_pegs();
         }
         backplate_usb_hole();
+        backplate_button_hole();
         backplate_magnet_bulge();
         backplate_supports();
     }
@@ -262,6 +263,17 @@ module backplate_usb_hole() {
             translate([9,0,0]) rotate([90, 0, 0]) cylinder(r=2, h=10, center=true);
             translate([1,0,-kb_height]) cube([6,10,2], center=true);
             translate([9,0,-kb_height]) cube([4,10,2], center=true);
+        };
+    };
+}
+
+module backplate_button_hole() {
+    translate([kb_w - 16.5, kb_h-21, kb_height-4.7]) {
+        hull() {
+            translate([0,0,0]) cylinder(r=2, h=10, center=true);
+            translate([11,0,0]) cylinder(r=2, h=10, center=true);
+            translate([0,3,0]) cylinder(r=2, h=10, center=true);
+            translate([11,3,0]) cylinder(r=2, h=10, center=true);
         };
     };
 }
@@ -321,7 +333,7 @@ module left_hand() {
         }
     }
     //color("gray", 0.5) keys(5,6);
-    //color("gray", 0.8) backplate();
+    color("gray", 0.8) backplate();
 }
 
 module right_hand() {

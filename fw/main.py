@@ -15,25 +15,25 @@ keyboard.extensions = [MediaKeys()]
 keyboard.modules = [Layers()]
 keyboard.diode_orientation = DiodeOrientation.COL2ROW
 keyboard.col_pins = (
-    board.GP0,
-    board.GP1,
-    board.GP2,
-    board.GP3,
-    board.GP4,
-    board.GP5,
-    board.GP12,
-    board.GP13,
     board.GP14,
     board.GP15,
     board.GP26,
-    board.GP27)
-keyboard.row_pins = (
-    board.GP6,
-    board.GP7,
+    board.GP27,
+    board.GP28,
+    board.A3,   # GP29, but circuitpy doesn't define it for some reason??
     board.GP8,
     board.GP9,
+    board.GP12,
     board.GP10,
-    board.GP11,)
+    board.GP11,
+    board.GP13)
+keyboard.row_pins = (
+    board.GP7,
+    board.GP6,
+    board.GP5,
+    board.GP4,
+    board.GP3,
+    board.GP2,)
 
 
 # Key Aliases
@@ -45,8 +45,8 @@ KC_PIPE = KC.LSFT(KC.BSLS)
 KC_UNDS = KC.LSFT(KC.MINS)
 TAB_LFT = KC.LCTL(KC.LSFT(KC.TAB))
 TAB_RGT = KC.LCTL(KC.TAB)
-L_LOWER = KC.MO(2)
-L_RAISE = KC.MO(3)
+L_RAISE = KC.MO(2)
+L_LOWER = KC.MO(3)
 L__UPUP = KC.MO(4)
 TG_QWER = KC.TG(1)
 

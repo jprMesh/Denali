@@ -335,7 +335,7 @@ module left_hand() {
             magnet_hole();
         }
     }
-    //color("gray", 0.5) keys(5,6);
+    color("gray", 0.5) keys(5,6);
     color("gray", 0.8) backplate();
 }
 
@@ -357,7 +357,7 @@ module keyboard() {
     
     //color("green", 0.7) pcb();
 
-    //color("cyan", 0.7) translate([kb_w-4, kb_h/2, 1]) rotate([0, 0, kb_mid_angle/2]) usbc();
+    //color("cyan", 0.7) translate([kb_w-11.5, kb_h-5, 1]) usbc();
 }
 
 keyboard();
